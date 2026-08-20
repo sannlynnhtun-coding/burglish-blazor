@@ -1,0 +1,424 @@
+.shell {
+    width: min(1180px, calc(100% - 2rem));
+    margin-inline: auto;
+    padding: 1.5rem 0 2rem;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 25rem;
+    padding: 1.25rem clamp(1.5rem, 5vw, 4.5rem) 3.75rem;
+    border: 1px solid rgba(26, 51, 39, 0.14);
+    border-radius: 1.75rem;
+    color: #f9f4e7;
+    background:
+        linear-gradient(115deg, rgba(15, 36, 27, 0.98), rgba(29, 73, 53, 0.94)),
+        #183f2f;
+    box-shadow: 0 1.5rem 4rem rgba(40, 50, 39, 0.16);
+}
+
+.hero::before,
+.hero::after {
+    position: absolute;
+    border-radius: 999px;
+    content: "";
+}
+
+.hero::before {
+    width: 24rem;
+    height: 24rem;
+    top: -11rem;
+    right: -5rem;
+    border: 1px solid rgba(244, 188, 76, 0.35);
+    box-shadow: 0 0 0 4rem rgba(244, 188, 76, 0.05), 0 0 0 8rem rgba(244, 188, 76, 0.035);
+}
+
+.hero::after {
+    width: 11rem;
+    height: 11rem;
+    right: 18%;
+    bottom: -8rem;
+    background: #eab54a;
+    filter: blur(1px);
+}
+
+.brand {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: inherit;
+    font-size: 1.05rem;
+    font-weight: 760;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+}
+
+.brand-mark {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border-radius: 0.7rem;
+    color: #193b2c;
+    background: #efbd57;
+    font-family: Georgia, serif;
+    font-size: 1.35rem;
+}
+
+.hero-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin-top: clamp(4rem, 9vw, 7rem);
+}
+
+.eyebrow,
+.section-label {
+    margin: 0 0 0.7rem;
+    color: #d9a946;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    max-width: 760px;
+    margin-bottom: 1rem;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.75rem, 7vw, 5.8rem);
+    font-weight: 500;
+    letter-spacing: -0.055em;
+    line-height: 0.96;
+}
+
+.lede {
+    max-width: 610px;
+    margin-bottom: 0;
+    color: rgba(249, 244, 231, 0.72);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.65;
+}
+
+.editor-card {
+    position: relative;
+    z-index: 2;
+    margin: -1.5rem clamp(0.75rem, 4vw, 3.25rem) 0;
+    padding: clamp(1.25rem, 3vw, 2.25rem);
+    border: 1px solid rgba(26, 51, 39, 0.13);
+    border-radius: 1.35rem;
+    background: rgba(255, 253, 248, 0.96);
+    box-shadow: 0 1.5rem 4rem rgba(35, 45, 35, 0.14);
+    backdrop-filter: blur(16px);
+}
+
+.editor-heading,
+.shortcut-row,
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.editor-heading {
+    margin-bottom: 1.25rem;
+}
+
+.editor-heading h2,
+.how-heading h2 {
+    margin-bottom: 0;
+    color: #1b2f25;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+}
+
+.status {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.5rem;
+    color: #486052;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.status span {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: #3f9d69;
+    box-shadow: 0 0 0 0.25rem rgba(63, 157, 105, 0.13);
+}
+
+.converter-host {
+    position: relative;
+}
+
+.converter-host ::deep textarea {
+    display: block;
+    width: 100% !important;
+    min-height: 18rem;
+    resize: vertical;
+    padding: 1.35rem 1.4rem !important;
+    border: 1px solid #cfd6cc !important;
+    border-radius: 1rem;
+    outline: none;
+    color: #15251c;
+    background: #f9f8f2;
+    font-size: 1.15rem !important;
+    line-height: 1.8 !important;
+    transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+.converter-host ::deep textarea:focus {
+    border-color: #3d775b !important;
+    background: #fffefa;
+    box-shadow: 0 0 0 0.25rem rgba(61, 119, 91, 0.11);
+}
+
+.converter-host ::deep textarea::placeholder {
+    color: #8e9a91;
+}
+
+.converter-host ::deep > span:not(.g7) {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem 0.9rem;
+    padding-top: 1rem;
+    color: #435449 !important;
+    font-family: inherit !important;
+    font-size: 0.8rem !important;
+}
+
+.converter-host ::deep input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    margin: 0 0.2rem 0 0;
+    accent-color: #2f6a4d;
+    vertical-align: -0.16rem !important;
+}
+
+.converter-host ::deep select,
+.converter-host ::deep input[type="button"] {
+    min-height: 2.25rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid #bdc8bf;
+    border-radius: 0.55rem;
+    color: #23362b;
+    background: #fff;
+}
+
+.converter-host ::deep input[type="button"] {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.converter-host ::deep input[type="button"]:hover {
+    border-color: #2f6a4d;
+    color: #fff;
+    background: #2f6a4d;
+}
+
+.converter-host ::deep .g7 {
+    position: absolute;
+    z-index: 20;
+    display: flex;
+    visibility: hidden;
+    overflow: auto;
+    max-width: min(92vw, 70rem);
+    max-height: 24rem;
+    padding: 0.5rem;
+    border: 1px solid #9eb5a5;
+    border-radius: 0.85rem;
+    color: #16251d;
+    background: rgba(255, 255, 252, 0.98);
+    box-shadow: 0 1rem 3rem rgba(35, 52, 40, 0.24);
+    cursor: pointer;
+    font-family: "Zawgyi-One", "Myanmar Text", sans-serif;
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+.converter-host ::deep .gH {
+    flex: 0 0 12rem;
+    padding: 0.2rem;
+}
+
+.converter-host ::deep .gH > div {
+    padding: 0.35rem 0.55rem;
+    border-radius: 0.4rem;
+}
+
+.converter-host ::deep .Nh {
+    background: #d9ecdf;
+}
+
+.converter-host ::deep .gk {
+    width: 100% !important;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    color: #fff;
+    background: #1d3529;
+}
+
+.converter-host ::deep #Na {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+}
+
+.converter-host ::deep #Na span {
+    min-width: 2.4rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 0.35rem;
+    color: #18281f;
+    background: #f5c461;
+    text-align: center;
+    cursor: pointer;
+}
+
+.shortcut-row {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 1rem;
+    color: #657269;
+    font-size: 0.78rem;
+}
+
+kbd {
+    display: inline-block;
+    min-width: 2rem;
+    margin-right: 0.25rem;
+    padding: 0.2rem 0.4rem;
+    border: 1px solid #ccd2ca;
+    border-bottom-width: 2px;
+    border-radius: 0.35rem;
+    color: #35463c;
+    background: #fff;
+    font-family: inherit;
+    font-weight: 800;
+    text-align: center;
+}
+
+.how-it-works {
+    padding: clamp(5rem, 10vw, 8rem) clamp(0.75rem, 4vw, 3.25rem) 5rem;
+}
+
+.how-heading {
+    max-width: 560px;
+    margin-bottom: 2rem;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.steps article {
+    min-height: 15rem;
+    padding: 1.5rem;
+    border-top: 1px solid #8d9a90;
+}
+
+.steps article > span {
+    color: #a8781c;
+    font-family: Georgia, serif;
+    font-size: 0.8rem;
+}
+
+.steps h3 {
+    margin: 3.5rem 0 0.75rem;
+    color: #21382c;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.steps p {
+    max-width: 20rem;
+    margin-bottom: 0;
+    color: #68746c;
+    line-height: 1.65;
+}
+
+footer {
+    padding: 1.4rem clamp(0.75rem, 4vw, 3.25rem) 0;
+    border-top: 1px solid rgba(44, 65, 53, 0.18);
+    color: #667269;
+    font-size: 0.8rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: #214f39;
+    font-weight: 750;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+    .shell {
+        width: min(100% - 1rem, 1180px);
+        padding-top: 0.5rem;
+    }
+
+    .hero {
+        min-height: 25rem;
+        border-radius: 1.25rem;
+    }
+
+    .editor-card {
+        margin-inline: 0.5rem;
+    }
+
+    .editor-heading,
+    footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .converter-host ::deep textarea {
+        min-height: 15rem;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .steps article {
+        min-height: auto;
+    }
+
+    .steps h3 {
+        margin-top: 2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .converter-host ::deep textarea {
+        transition: none;
+    }
+}

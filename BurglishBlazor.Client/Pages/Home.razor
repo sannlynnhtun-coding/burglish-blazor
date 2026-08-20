@@ -1,0 +1,101 @@
+@page "/"
+@inject IJSRuntime JS
+@implements IAsyncDisposable
+
+<PageTitle>Burglish · English to Myanmar typing</PageTitle>
+
+<main class="shell">
+    <header class="hero">
+        <a class="brand" href="" aria-label="Burglish home">
+            <span class="brand-mark">B</span>
+            <span>Burglish</span>
+        </a>
+
+        <div class="hero-copy">
+            <p class="eyebrow">Roman letters in. Myanmar text out.</p>
+            <h1>Type Burmese at the speed of thought.</h1>
+            <p class="lede">The complete Burglish 1.9 typing flow, rebuilt as a local Blazor WebAssembly app.</p>
+        </div>
+    </header>
+
+    <section class="editor-card" aria-labelledby="editor-title">
+        <div class="editor-heading">
+            <div>
+                <p class="section-label">Live converter</p>
+                <h2 id="editor-title">Start typing in English</h2>
+            </div>
+            <span class="status"><span></span> Runs in your browser</span>
+        </div>
+
+        <div class="converter-host" @ref="_host">
+            <textarea id="testarea"
+                      @ref="_textArea"
+                      aria-label="Burglish typing area"
+                      autocomplete="off"
+                      spellcheck="false"
+                      placeholder="Try: mingalar par..."></textarea>
+        </div>
+
+        <div class="shortcut-row" aria-label="Keyboard shortcuts">
+            <span><kbd>F2</kbd> suggestions</span>
+            <span><kbd>Space</kbd> next choice</span>
+            <span><kbd>Enter</kbd> accept</span>
+            <span><kbd>F8</kbd> typewriter</span>
+        </div>
+    </section>
+
+    <section class="how-it-works" aria-labelledby="how-title">
+        <div class="how-heading">
+            <p class="section-label">How it works</p>
+            <h2 id="how-title">Three keys to fluent typing</h2>
+        </div>
+
+        <div class="steps">
+            <article>
+                <span>01</span>
+                <h3>Type phonetically</h3>
+                <p>Use familiar romanized Burmese. Suggestions appear while you type.</p>
+            </article>
+            <article>
+                <span>02</span>
+                <h3>Pick a suggestion</h3>
+                <p>Use the number keys, arrows, mouse, Space, Tab, or Enter.</p>
+            </article>
+            <article>
+                <span>03</span>
+                <h3>Fine-tune output</h3>
+                <p>Switch fonts, show the character board, or run syntax correction.</p>
+            </article>
+        </div>
+    </section>
+
+    <footer>
+        <p>Blazor WebAssembly edition · Burglish engine v1.9.12.090705</p>
+        <a href="https://burglish.my-mm.org/latest/trunk/web/testarea.htm" target="_blank" rel="noreferrer">View the original test area ↗</a>
+    </footer>
+</main>
+
+@code {
+    private ElementReference _host;
+    private ElementReference _textArea;
+    private HomeInterop? _interop;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        _interop = new HomeInterop(JS);
+        await _interop.InitializeAsync(_host, _textArea);
+    }
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (_interop is not null)
+        {
+            await _interop.DisposeAsync();
+        }
+    }
+}
