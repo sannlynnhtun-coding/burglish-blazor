@@ -6,4 +6,4 @@ This project includes a local snapshot of the Burglish 1.9.12.090705 browser con
 - Original project credit shown on that page: Burglish.com / Soe Min .NET
 - Snapshot date: 2026-08-12
 
-The engine is kept in `BurglishBlazor.Client/wwwroot/js/burglish-engine.js`; its integration and user interface are implemented by this Blazor project.
+The engine is kept in `BurglishBlazor/wwwroot/js/burglish-engine.js`; its integration and user interface are implemented by this Blazor project.

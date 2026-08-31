@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace BurglishBlazor.Client.Pages;
+namespace BurglishBlazor.Pages;
 
 internal sealed class HomeInterop(IJSRuntime js) : IAsyncDisposable
 {
