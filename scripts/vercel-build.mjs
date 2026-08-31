@@ -74,13 +74,16 @@ if (!hasPinnedSdk()) {
   dotnetCommand = localDotnet;
 }
 
+const publishDirectory = join(repositoryRoot, "dist");
+rmSync(publishDirectory, { recursive: true, force: true });
+
 run(dotnetCommand, [
   "publish",
   join(repositoryRoot, "BurglishBlazor", "BurglishBlazor.csproj"),
   "--configuration",
   "Release",
   "--output",
-  join(repositoryRoot, "dist"),
+  publishDirectory,
   "--nologo",
 ], {
   env: {

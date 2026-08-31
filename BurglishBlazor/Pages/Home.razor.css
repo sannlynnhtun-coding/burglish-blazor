@@ -57,15 +57,12 @@
 }
 
 .brand-mark {
-    display: grid;
-    width: 2.25rem;
-    height: 2.25rem;
-    place-items: center;
-    border-radius: 0.7rem;
-    color: #193b2c;
-    background: #efbd57;
-    font-family: Georgia, serif;
-    font-size: 1.35rem;
+    display: block;
+    flex: 0 0 auto;
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+    filter: drop-shadow(0 0.2rem 0.35rem rgba(8, 24, 17, 0.24));
 }
 
 .hero-copy {
