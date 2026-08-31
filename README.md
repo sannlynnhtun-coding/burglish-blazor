@@ -24,4 +24,8 @@ The conversion engine is bundled locally, so typing works without calling the or
 dotnet build .\BurglishBlazor.sln
 ```
 
+## Deploy to Vercel
+
+The repository includes `vercel.json` and a build script for Vercel's Linux build image. Set the Vercel Framework Preset to **Other** and keep the project Root Directory at the repository root. Git deployments will then install the SDK pinned in `global.json`, publish the app, and serve `dist/wwwroot` with a fallback to `index.html` for client-side routes.
+
 See `THIRD-PARTY-NOTICES.md` for attribution to the original Burglish engine.
