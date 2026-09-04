@@ -48,7 +48,7 @@ class BurglishConverter {
 
     #bindTree() {
         this.#bindTextArea(this.#host.querySelector("textarea[burglish]"));
-        this.#host.querySelectorAll('input[type="checkbox"]').forEach(element => this.#bindCheckbox(element));
+        this.#host.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(element => this.#bindCheckbox(element));
         this.#host.querySelectorAll("select").forEach(element => this.#bindSelect(element));
         this.#host.querySelectorAll('input[type="button"]').forEach(element => this.#bindButton(element));
         this.#host.querySelectorAll('[id^="wOtestarea"]').forEach(element => this.#bindSuggestion(element));
