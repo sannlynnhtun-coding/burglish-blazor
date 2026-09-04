@@ -27,7 +27,7 @@ class BurglishConverter {
 
     constructor(host, textArea) {
         this.#host = host;
-        gZ({ id: textArea.id, N_: true, self: true, KY: false, rows: 10 });
+        gZ({ id: textArea.id, N_: true, self: true, KY: false, rows: 10, Qe: 1, hc: 0 });
         restoreDocumentKeypress();
         this.#bindTree();
 
@@ -48,7 +48,7 @@ class BurglishConverter {
 
     #bindTree() {
         this.#bindTextArea(this.#host.querySelector("textarea[burglish]"));
-        this.#host.querySelectorAll('input[type="checkbox"]').forEach(element => this.#bindCheckbox(element));
+        this.#host.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(element => this.#bindCheckbox(element));
         this.#host.querySelectorAll("select").forEach(element => this.#bindSelect(element));
         this.#host.querySelectorAll('input[type="button"]').forEach(element => this.#bindButton(element));
         this.#host.querySelectorAll('[id^="wOtestarea"]').forEach(element => this.#bindSuggestion(element));
