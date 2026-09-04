@@ -27,7 +27,7 @@ class BurglishConverter {
 
     constructor(host, textArea) {
         this.#host = host;
-        gZ({ id: textArea.id, N_: true, self: true, KY: false, rows: 10, Qe: 1, hc: 0 });
+        gZ({ id: textArea.id, N_: true, self: true, KY: false, hq: true, rows: 10, Qe: 1, hc: 0 });
         restoreDocumentKeypress();
         this.#bindTree();
 
