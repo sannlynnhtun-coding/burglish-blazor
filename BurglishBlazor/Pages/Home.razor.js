@@ -77,6 +77,8 @@ class BurglishConverter {
         this.#listen(textArea, "mouseover", () => NE(textArea));
         this.#listen(textArea, "mouseup", event => QF(event));
         this.#listen(textArea, "keyup", event => QF(event));
+        this.#listen(textArea, "input", () => this.#normalizeTallAa(textArea));
+        this.#listen(textArea, "keyup", () => this.#normalizeTallAa(textArea));
         this.#listen(textArea, "keydown", event => {
             if (this.#selectNumericSuggestionWithShift(event)) {
                 event.preventDefault();
@@ -152,6 +154,18 @@ class BurglishConverter {
         menuContent?.insertBefore(hint, menuContent.querySelector(".gH"));
     }
 
+    #normalizeTallAa(textArea) {
+        const normalizedValue = textArea.value.replace(/(မ[ၠ-ၼႇႇွုူႈႉြႊ]?)ါ/g, "$1ာ");
+        if (normalizedValue === textArea.value) {
+            return;
+        }
+
+        const selectionStart = textArea.selectionStart;
+        const selectionEnd = textArea.selectionEnd;
+        textArea.value = normalizedValue;
+        textArea.setSelectionRange(selectionStart, selectionEnd);
+    }
+
     #bindCheckbox(checkbox) {
         if (!this.#claim(checkbox)) {
             return;
@@ -178,7 +192,15 @@ class BurglishConverter {
         }
 
         button.removeAttribute("onclick");
-        this.#listen(button, "click", () => button.value === "Correct Syntax!" ? gL() : ND());
+        this.#listen(button, "click", () => {
+            if (button.value === "Correct Syntax!") {
+                gL();
+                this.#normalizeTallAa(this.#host.querySelector("textarea[burglish]"));
+                return;
+            }
+
+            ND();
+        });
     }
 
     #bindSuggestion(suggestion) {
