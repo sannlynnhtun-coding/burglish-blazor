@@ -272,6 +272,14 @@ footer {
     border-radius: 0.4rem;
 }
 
+.converter-host ::deep .numeric-suggestion-tip {
+    margin: 0.1rem 0.25rem 0.45rem;
+    color: #426451;
+    font-family: system-ui, "Myanmar Text", sans-serif;
+    font-size: 0.76rem;
+    line-height: 1.45;
+}
+
 .converter-host ::deep .Nh {
     background: #d9ecdf;
 }

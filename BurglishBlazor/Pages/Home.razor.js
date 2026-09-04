@@ -47,12 +47,14 @@ class BurglishConverter {
     }
 
     #bindTree() {
-        this.#bindTextArea(this.#host.querySelector("textarea[burglish]"));
+        const textArea = this.#host.querySelector("textarea[burglish]");
+        this.#bindTextArea(textArea);
         this.#host.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(element => this.#bindCheckbox(element));
         this.#host.querySelectorAll("select").forEach(element => this.#bindSelect(element));
         this.#host.querySelectorAll('input[type="button"]').forEach(element => this.#bindButton(element));
         this.#host.querySelectorAll('[id^="wOtestarea"]').forEach(element => this.#bindSuggestion(element));
         this.#host.querySelectorAll("#Na span").forEach(element => this.#bindCharacter(element));
+        this.#updateNumericSuggestionHint();
     }
 
     #claim(element) {
@@ -76,6 +78,11 @@ class BurglishConverter {
         this.#listen(textArea, "mouseup", event => QF(event));
         this.#listen(textArea, "keyup", event => QF(event));
         this.#listen(textArea, "keydown", event => {
+            if (this.#selectNumericSuggestionWithShift(event)) {
+                event.preventDefault();
+                return;
+            }
+
             if (Ns(event) === false) {
                 event.preventDefault();
                 return;
@@ -97,6 +104,52 @@ class BurglishConverter {
                 }
             }
         });
+    }
+
+    #numericSuggestions() {
+        const suggestions = [...this.#host.querySelectorAll('[id^="wOtestarea"]')];
+        const firstSuggestion = suggestions[0]?.textContent?.trim() ?? "";
+
+        return /^0\.\s+\d+(?:\s|$)/.test(firstSuggestion) ? suggestions : [];
+    }
+
+    #selectNumericSuggestionWithShift(event) {
+        const digitMatch = event.code.match(/^Digit([0-9])$/);
+        if (!digitMatch || !event.shiftKey || event.altKey || event.ctrlKey || event.metaKey) {
+            return false;
+        }
+
+        const index = Number.parseInt(digitMatch[1], 10);
+        if (!this.#numericSuggestions()[index]) {
+            return false;
+        }
+
+        N2(index);
+        NB();
+        return true;
+    }
+
+    #updateNumericSuggestionHint() {
+        const menu = this.#host.querySelector("#testareadrop");
+        if (!menu) {
+            return;
+        }
+
+        const existingHint = menu.querySelector(".numeric-suggestion-tip");
+        if (this.#numericSuggestions().length === 0) {
+            existingHint?.remove();
+            return;
+        }
+
+        if (existingHint) {
+            return;
+        }
+
+        const hint = document.createElement("div");
+        hint.className = "numeric-suggestion-tip";
+        hint.textContent = "ဂဏန်းသာရိုက်ထားပါက Shift + 0–9 နှင့်ရွေးပါ၊ သို့မဟုတ် ↑ ↓ ပြီး Enter နှိပ်ပါ။";
+        const menuContent = menu.firstElementChild;
+        menuContent?.insertBefore(hint, menuContent.querySelector(".gH"));
     }
 
     #bindCheckbox(checkbox) {
